@@ -35,10 +35,7 @@ export default function useApplicationData() {
         };
       }
       case DELETE_INTERVIEW: {
-        // const appointments = { ...state.appointments };
-        // appointments[action.appointment.id].interview = null;
-
-        const result = {
+        return {
           ...state,
           appointments: {
             ...state.appointments,
@@ -49,7 +46,6 @@ export default function useApplicationData() {
           },
           days: action.days
         };
-        return result;
       }
       default:
         throw new Error(
