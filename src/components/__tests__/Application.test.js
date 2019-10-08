@@ -7,14 +7,13 @@ import {
   waitForElement,
   fireEvent,
   getByText,
-  // prettyDOM,
+  prettyDOM,
   getAllByTestId,
   getByAltText,
   getByPlaceholderText,
   queryByText,
   queryByAltText,
-  queryByDisplayValue,
-  prettyDOM
+  queryByDisplayValue
 } from "@testing-library/react";
 
 import Application from "components/Application";
@@ -55,7 +54,7 @@ it("loads data, books an interview and reduces the spots remaining for Monday by
     queryByText(day, "Monday")
   );
 
-  expect(getByText(day, "3 spots remaining")).toBeInTheDocument();
+  expect(getByText(day, "no spots remaining")).toBeInTheDocument();
 });
 
 it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
@@ -91,7 +90,7 @@ it("loads data, cancels an interview and increases the spots remaining for Monda
     queryByText(day, "Monday")
   );
 
-  expect(getByText(day, "5 spots remaining")).toBeInTheDocument();
+  expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 });
 
 it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
@@ -100,7 +99,6 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
 
   // 2. Wait until the text "Archie Cohen" is displayed.
   await waitForElement(() => getByText(container, "Archie Cohen"));
-
   debug();
 
   // // 3. Click the "Edit" button on the booked appointment.

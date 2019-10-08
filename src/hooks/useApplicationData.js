@@ -47,35 +47,40 @@ export default function useApplicationData() {
   }
 
   function bookInterview(appointmentId, interview, method) {
-    const appointment = {
-      ...state.appointments[appointmentId],
-      id: appointmentId,
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [appointmentId]: appointment
-    };
+    // const appointment = {
+    //   ...state.appointments[appointmentId],
+    //   id: appointmentId,
+    //   interview: { ...interview }
+    // };
+    // const appointments = {
+    //   ...state.appointments,
+    //   [appointmentId]: appointment
+    // };
 
     return axios
       .put(`http://localhost:8001/api/appointments/${appointmentId}`, {
         interview
       })
       .then(res => {
+        // dispatch({
+        //   type: SET_INTERVIEW,
+        //   days: updatedDays(appointments),
+        //   appointment
+        // });
         dispatch({
           type: SET_INTERVIEW,
-          days: updatedDays(appointments),
-          appointment
+          id: appointmentId,
+          interview
         });
       });
   }
 
   function cancelInterview(appointmentId, interview) {
-    const appointment = {
-      ...state.appointments[appointmentId],
-      id: appointmentId,
-      interview: { ...interview }
-    };
+    // const appointment = {
+    //   ...state.appointments[appointmentId],
+    //   id: appointmentId,
+    //   interview: { ...interview }
+    // };
 
     // const appointments = {
     //   ...state.appointments,
@@ -87,12 +92,17 @@ export default function useApplicationData() {
         interview
       })
       .then(res => {
-        const appointments = { ...state.appointments };
-        appointments[appointmentId].interview = null;
+        // const appointments = { ...state.appointments };
+        // appointments[appointmentId].interview = null;
+        // dispatch({
+        //   type: DELETE_INTERVIEW,
+        //   days: updatedDays(appointments),
+        //   appointment
+        // });
         dispatch({
-          type: DELETE_INTERVIEW,
-          days: updatedDays(appointments),
-          appointment
+          type: SET_INTERVIEW,
+          id: appointmentId,
+          interview: null
         });
       });
   }

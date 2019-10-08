@@ -60,10 +60,11 @@ export default function Appointment(props) {
         <Show
           onEdit={() => transition(EDIT)}
           onDelete={() => transition(CONFIRM)}
-          interviewer={
-            (interviewDetail("interviewer") || { name: "Unnamed Interviewer" })
-              .name
-          }
+          // interviewer={
+          //   (interviewDetail("interviewer") || { name: "Unnamed Interviewer" })
+          //     .name
+          // }
+          interviewer={props.interview.interviewer}
           student={interviewDetail("student")}
         />
       )}

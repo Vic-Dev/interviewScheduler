@@ -14,12 +14,10 @@ export function getInterview(state, oneInterview) {
   if (oneInterview === null) {
     return null;
   }
-  return oneInterview
-    ? {
-        interviewer: state.interviewers[oneInterview.interviewer],
-        student: oneInterview.student
-      }
-    : {};
+  return {
+    interviewer: state.interviewers[oneInterview.interviewer],
+    student: oneInterview.student
+  };
 }
 
 export function getInterviewersForDay(state, day) {
